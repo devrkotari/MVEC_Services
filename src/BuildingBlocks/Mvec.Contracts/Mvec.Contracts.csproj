@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><GenerateDocumentationFile>false</GenerateDocumentationFile></PropertyGroup>
+</Project>

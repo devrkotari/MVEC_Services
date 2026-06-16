@@ -1,5 +1,43 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+# .gitignore for the MVEC .NET solution
 ################################################################################
 
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+artifacts/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.slnLaunch.user
+*.DotSettings.user
+
+# Test results / coverage
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+coverage/
+
+# Local secrets / environment
+*.pfx
+appsettings.*.local.json
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Tooling
 /.claude/settings.json

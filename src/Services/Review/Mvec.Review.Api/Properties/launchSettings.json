@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Review": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5250",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  }
+}

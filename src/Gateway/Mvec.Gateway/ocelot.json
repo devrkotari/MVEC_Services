@@ -1,0 +1,54 @@
+{
+  "Routes": [
+    { "DownstreamPathTemplate": "/api/identity/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "identity-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/identity/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
+    { "DownstreamPathTemplate": "/api/products/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/products/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+    { "DownstreamPathTemplate": "/api/categories/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/categories/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+    { "DownstreamPathTemplate": "/api/wishlist/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/wishlist/{everything}", "UpstreamHttpMethod": [ "GET","POST","DELETE" ] },
+
+    { "DownstreamPathTemplate": "/api/vendors/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "vendor-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/vendors/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
+    { "DownstreamPathTemplate": "/api/cart/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "order-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/cart/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+    { "DownstreamPathTemplate": "/api/orders/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "order-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/orders/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+    { "DownstreamPathTemplate": "/api/addresses/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "order-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/addresses/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+
+    { "DownstreamPathTemplate": "/api/payments/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "payment-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/payments/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT" ] },
+    { "DownstreamPathTemplate": "/api/payouts/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "payment-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/payouts/{everything}", "UpstreamHttpMethod": [ "GET","POST" ] },
+
+    { "DownstreamPathTemplate": "/api/notifications/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "notification-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/notifications/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT" ] },
+    { "DownstreamPathTemplate": "/hubs/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "notification-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/hubs/{everything}", "UpstreamHttpMethod": [ "GET","POST" ] },
+
+    { "DownstreamPathTemplate": "/api/reviews/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "review-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/reviews/{everything}", "UpstreamHttpMethod": [ "GET","POST","PATCH" ] },
+
+    { "DownstreamPathTemplate": "/api/analytics/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "analytics-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/analytics/{everything}", "UpstreamHttpMethod": [ "GET" ] }
+  ],
+  "GlobalConfiguration": { "BaseUrl": "https://localhost:8443", "RequestIdKey": "X-Correlation-Id" }
+}

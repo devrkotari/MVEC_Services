@@ -1,0 +1,54 @@
+{
+  "Routes": [
+    { "DownstreamPathTemplate": "/api/identity/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5180 } ],
+      "UpstreamPathTemplate": "/api/identity/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
+    { "DownstreamPathTemplate": "/api/vendors/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 58986 } ],
+      "UpstreamPathTemplate": "/api/vendors/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
+    { "DownstreamPathTemplate": "/api/products/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5200 } ],
+      "UpstreamPathTemplate": "/api/products/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+    { "DownstreamPathTemplate": "/api/categories/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5200 } ],
+      "UpstreamPathTemplate": "/api/categories/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+    { "DownstreamPathTemplate": "/api/wishlist/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5200 } ],
+      "UpstreamPathTemplate": "/api/wishlist/{everything}", "UpstreamHttpMethod": [ "GET","POST","DELETE" ] },
+
+    { "DownstreamPathTemplate": "/api/cart/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5210 } ],
+      "UpstreamPathTemplate": "/api/cart/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+    { "DownstreamPathTemplate": "/api/orders/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5210 } ],
+      "UpstreamPathTemplate": "/api/orders/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+    { "DownstreamPathTemplate": "/api/addresses/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5210 } ],
+      "UpstreamPathTemplate": "/api/addresses/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+
+    { "DownstreamPathTemplate": "/api/payments/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5220 } ],
+      "UpstreamPathTemplate": "/api/payments/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT" ] },
+    { "DownstreamPathTemplate": "/api/payouts/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5220 } ],
+      "UpstreamPathTemplate": "/api/payouts/{everything}", "UpstreamHttpMethod": [ "GET","POST" ] },
+
+    { "DownstreamPathTemplate": "/api/analytics/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5230 } ],
+      "UpstreamPathTemplate": "/api/analytics/{everything}", "UpstreamHttpMethod": [ "GET" ] },
+
+    { "DownstreamPathTemplate": "/api/notifications/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5240 } ],
+      "UpstreamPathTemplate": "/api/notifications/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT" ] },
+    { "DownstreamPathTemplate": "/hubs/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5240 } ],
+      "UpstreamPathTemplate": "/hubs/{everything}", "UpstreamHttpMethod": [ "GET","POST" ] },
+
+    { "DownstreamPathTemplate": "/api/reviews/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5250 } ],
+      "UpstreamPathTemplate": "/api/reviews/{everything}", "UpstreamHttpMethod": [ "GET","POST","PATCH" ] }
+  ],
+  "GlobalConfiguration": { "BaseUrl": "https://localhost:49964", "RequestIdKey": "X-Correlation-Id" }
+}

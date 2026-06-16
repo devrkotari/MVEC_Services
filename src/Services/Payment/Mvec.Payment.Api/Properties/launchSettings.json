@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Payment": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5220",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <!-- Keep the route config beside the binary so a bin-relative working directory loads the latest. -->
+    <None Update="ocelot.json;ocelot.Development.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ocelot" />
+    <PackageReference Include="Ocelot.Provider.Polly" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Serilog.AspNetCore" />
+  </ItemGroup>
+</Project>
