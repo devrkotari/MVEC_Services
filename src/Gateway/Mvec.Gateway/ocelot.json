@@ -18,6 +18,10 @@
       "DownstreamHostAndPorts": [ { "Host": "vendor-service", "Port": 8080 } ],
       "UpstreamPathTemplate": "/api/vendors/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
 
+    { "DownstreamPathTemplate": "/api/admin/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "admin-service", "Port": 8080 } ],
+      "UpstreamPathTemplate": "/api/admin/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
     { "DownstreamPathTemplate": "/api/cart/{everything}", "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [ { "Host": "order-service", "Port": 8080 } ],
       "UpstreamPathTemplate": "/api/cart/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },

@@ -8,6 +8,10 @@
       "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 58986 } ],
       "UpstreamPathTemplate": "/api/vendors/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
 
+    { "DownstreamPathTemplate": "/api/admin/{everything}", "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5260 } ],
+      "UpstreamPathTemplate": "/api/admin/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+
     { "DownstreamPathTemplate": "/api/products/{everything}", "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 5200 } ],
       "UpstreamPathTemplate": "/api/products/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
