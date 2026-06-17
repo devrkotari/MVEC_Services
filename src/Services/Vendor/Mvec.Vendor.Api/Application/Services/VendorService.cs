@@ -28,7 +28,7 @@ public sealed class VendorService : IVendorService
         var vendor = Domain.Vendor.Register(ownerUserId, req.BusinessName, req.BusinessType,
             req.ContactEmail, req.ContactPhone, req.Pan, req.Gstin);
         _vendors.Add(vendor);
-        await _uow.SaveChangesAsync(ct);
+        await _uow.SaveChangesAsync(CancellationToken.None); // complete the write once started (see ApproveAsync)
 
         // Post-commit publish: the write is already durable, so it must NOT observe the request's
         // cancellation token — a client/gateway abort here would otherwise throw after the fact.
@@ -75,14 +75,17 @@ public sealed class VendorService : IVendorService
 
     public async Task<Result<VendorDto>> ApproveAsync(long vendorId, long adminId, CancellationToken ct = default)
     {
-        var vendor = await _vendors.GetWithDocumentsAsync(vendorId, ct);
+        // Admin state-change: once invoked, run the load + commit with CancellationToken.None so an
+        // upstream timeout or client disconnect (this call arrives via Gateway -> Admin BFF -> Vendor)
+        // can't abort the DB write half-way and surface as TaskCanceledException.
+        var vendor = await _vendors.GetWithDocumentsAsync(vendorId, CancellationToken.None);
         if (vendor is null)
             return Result<VendorDto>.Failure(Error.NotFound("Vendor not found."));
         if (vendor.Status == VendorStatus.Closed)
             return Result<VendorDto>.Failure(Error.Conflict("Cannot approve a closed vendor."));
 
         vendor.Approve(adminId);
-        await _uow.SaveChangesAsync(ct);
+        await _uow.SaveChangesAsync(CancellationToken.None);
 
         await _events.PublishAsync(
             new VendorApproved(vendor.Id, vendor.OwnerUserId, DateTime.UtcNow));
@@ -95,7 +98,8 @@ public sealed class VendorService : IVendorService
         if (string.IsNullOrWhiteSpace(req.Reason))
             return Result<VendorDto>.Failure(Error.Validation("A rejection reason is required."));
 
-        var vendor = await _vendors.GetWithDocumentsAsync(vendorId, ct);
+        // Admin state-change: complete independently of the request token (see ApproveAsync).
+        var vendor = await _vendors.GetWithDocumentsAsync(vendorId, CancellationToken.None);
         if (vendor is null)
             return Result<VendorDto>.Failure(Error.NotFound("Vendor not found."));
         if (vendor.Status == VendorStatus.Closed)
@@ -103,7 +107,7 @@ public sealed class VendorService : IVendorService
 
         var reason = req.Reason.Trim();
         vendor.Reject(adminId, reason);
-        await _uow.SaveChangesAsync(ct);
+        await _uow.SaveChangesAsync(CancellationToken.None);
 
         await _events.PublishAsync(
             new VendorRejected(vendor.Id, vendor.OwnerUserId, reason, DateTime.UtcNow));
@@ -113,27 +117,29 @@ public sealed class VendorService : IVendorService
 
     public async Task<Result<VendorDto>> SuspendAsync(long vendorId, CancellationToken ct = default)
     {
-        var vendor = await _vendors.GetByIdAsync(vendorId, ct);
+        // Admin state-change: complete independently of the request token (see ApproveAsync).
+        var vendor = await _vendors.GetByIdAsync(vendorId, CancellationToken.None);
         if (vendor is null)
             return Result<VendorDto>.Failure(Error.NotFound("Vendor not found."));
         if (vendor.Status != VendorStatus.Active)
             return Result<VendorDto>.Failure(Error.Conflict("Only an active vendor can be suspended."));
 
         vendor.Suspend();
-        await _uow.SaveChangesAsync(ct);
+        await _uow.SaveChangesAsync(CancellationToken.None);
         return Result<VendorDto>.Success(vendor.ToDto());
     }
 
     public async Task<Result<VendorDto>> ReinstateAsync(long vendorId, CancellationToken ct = default)
     {
-        var vendor = await _vendors.GetByIdAsync(vendorId, ct);
+        // Admin state-change: complete independently of the request token (see ApproveAsync).
+        var vendor = await _vendors.GetByIdAsync(vendorId, CancellationToken.None);
         if (vendor is null)
             return Result<VendorDto>.Failure(Error.NotFound("Vendor not found."));
         if (vendor.Status != VendorStatus.Suspended)
             return Result<VendorDto>.Failure(Error.Conflict("Only a suspended vendor can be reinstated."));
 
         vendor.Reinstate();
-        await _uow.SaveChangesAsync(ct);
+        await _uow.SaveChangesAsync(CancellationToken.None);
         return Result<VendorDto>.Success(vendor.ToDto());
     }
 }
