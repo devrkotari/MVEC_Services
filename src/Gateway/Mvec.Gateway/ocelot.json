@@ -7,9 +7,11 @@
     { "DownstreamPathTemplate": "/api/products/{everything}", "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
       "UpstreamPathTemplate": "/api/products/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE","PATCH" ] },
+    
     { "DownstreamPathTemplate": "/api/categories/{everything}", "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
       "UpstreamPathTemplate": "/api/categories/{everything}", "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ] },
+    
     { "DownstreamPathTemplate": "/api/wishlist/{everything}", "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [ { "Host": "product-service", "Port": 8080 } ],
       "UpstreamPathTemplate": "/api/wishlist/{everything}", "UpstreamHttpMethod": [ "GET","POST","DELETE" ] },
