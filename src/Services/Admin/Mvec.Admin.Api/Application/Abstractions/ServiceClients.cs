@@ -20,6 +20,7 @@ public interface IVendorAdminClient
     Task<int> GetPendingApprovalCountAsync(CancellationToken ct = default);
 
     Task<DownstreamResponse> ListPendingAsync(string? queryString, CancellationToken ct = default);
+    Task<DownstreamResponse> ListApprovedAsync(string? queryString, CancellationToken ct = default);
     Task<DownstreamResponse> GetDetailAsync(long vendorId, CancellationToken ct = default);
     Task<DownstreamResponse> ApproveAsync(long vendorId, CancellationToken ct = default);
     Task<DownstreamResponse> RejectAsync(long vendorId, string jsonBody, CancellationToken ct = default);

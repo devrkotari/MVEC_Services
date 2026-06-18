@@ -26,6 +26,11 @@ public sealed class AdminVendorsController : ControllerBase
     public async Task<IActionResult> Pending(CancellationToken ct) =>
         (await _vendors.ListPendingAsync(Request.QueryString.Value, ct)).Relay();
 
+    /// <summary>Directory of approved (live) vendors (SCR-A03).</summary>
+    [HttpGet("approved")]
+    public async Task<IActionResult> Approved(CancellationToken ct) =>
+        (await _vendors.ListApprovedAsync(Request.QueryString.Value, ct)).Relay();
+
     /// <summary>Vendor detail + KYC documents (SCR-A04).</summary>
     [HttpGet("{id:long}")]
     public async Task<IActionResult> Detail(long id, CancellationToken ct) =>

@@ -20,6 +20,9 @@ public interface IVendorService
     /// <summary>Admin KYC queue: vendors awaiting review (SCR-A03).</summary>
     Task<PagedResult<VendorSummaryDto>> ListPendingAsync(PagedRequest request, CancellationToken ct = default);
 
+    /// <summary>Admin directory of approved (live) vendors (SCR-A03).</summary>
+    Task<PagedResult<VendorSummaryDto>> ListApprovedAsync(PagedRequest request, CancellationToken ct = default);
+
     /// <summary>Admin detail view: profile + documents (SCR-A04).</summary>
     Task<Result<VendorDetailDto>> GetDetailAsync(long vendorId, CancellationToken ct = default);
 

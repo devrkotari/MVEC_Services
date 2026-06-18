@@ -64,6 +64,13 @@ public sealed class VendorController : ControllerBase
     public async Task<IActionResult> ListPending([FromQuery] PagedRequest request, CancellationToken ct) =>
         Ok(await _vendors.ListPendingAsync(request, ct));
 
+    /// <summary>Admin directory of approved (live) vendors (SCR-A03).</summary>
+    [HttpGet("approved")]
+    [Authorize(Policy = MvecRoles.Admin)]
+    [ProducesResponseType(typeof(PagedResult<VendorSummaryDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ListApproved([FromQuery] PagedRequest request, CancellationToken ct) =>
+        Ok(await _vendors.ListApprovedAsync(request, ct));
+
     /// <summary>Admin detail view: profile + uploaded documents (SCR-A04).</summary>
     [HttpGet("{id:long}")]
     [Authorize(Policy = MvecRoles.Admin)]

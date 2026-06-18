@@ -65,6 +65,13 @@ public sealed class VendorService : IVendorService
         return new PagedResult<VendorSummaryDto>(items, page.Total, page.Page, page.PageSize);
     }
 
+    public async Task<PagedResult<VendorSummaryDto>> ListApprovedAsync(PagedRequest request, CancellationToken ct = default)
+    {
+        var page = await _vendors.ListApprovedAsync(request, ct);
+        var items = page.Items.Select(v => v.ToSummaryDto()).ToList();
+        return new PagedResult<VendorSummaryDto>(items, page.Total, page.Page, page.PageSize);
+    }
+
     public async Task<Result<VendorDetailDto>> GetDetailAsync(long vendorId, CancellationToken ct = default)
     {
         var vendor = await _vendors.GetWithDocumentsAsync(vendorId, ct);

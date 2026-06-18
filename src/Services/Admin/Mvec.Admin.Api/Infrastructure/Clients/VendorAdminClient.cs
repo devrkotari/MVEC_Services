@@ -12,6 +12,9 @@ public sealed class VendorAdminClient : DownstreamClientBase, IVendorAdminClient
     public Task<DownstreamResponse> ListPendingAsync(string? queryString, CancellationToken ct = default) =>
         RelayAsync(HttpMethod.Get, $"api/vendors/pending{queryString}", null, ct);
 
+    public Task<DownstreamResponse> ListApprovedAsync(string? queryString, CancellationToken ct = default) =>
+        RelayAsync(HttpMethod.Get, $"api/vendors/approved{queryString}", null, ct);
+
     public Task<DownstreamResponse> GetDetailAsync(long vendorId, CancellationToken ct = default) =>
         RelayAsync(HttpMethod.Get, $"api/vendors/{vendorId}", null, ct);
 

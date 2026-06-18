@@ -18,6 +18,9 @@ public interface IVendorRepository : IRepository<Domain.Vendor, long>
 
     /// <summary>Paged admin KYC queue: vendors still Pending or UnderReview (SCR-A03).</summary>
     Task<PagedResult<Domain.Vendor>> ListPendingAsync(PagedRequest request, CancellationToken ct = default);
+
+    /// <summary>Paged list of approved vendors (KYC Approved — Active or Suspended), for the admin directory (SCR-A03).</summary>
+    Task<PagedResult<Domain.Vendor>> ListApprovedAsync(PagedRequest request, CancellationToken ct = default);
 }
 
 /// <summary>Aggregate-root repository for <see cref="VendorStore"/> (one store per vendor).</summary>
